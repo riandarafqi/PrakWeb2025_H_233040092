@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -33,11 +34,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -45,4 +41,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // relasi: Satu user memiliki banyak posts (One-to-Many)
+    public function posts():HasMany{
+        return $this->hasMany(Post::class, 'user_id');
+        // 'user_id' adalah foreign key di tabel posts yang menunjuk ke users.id
+    }
+
 }

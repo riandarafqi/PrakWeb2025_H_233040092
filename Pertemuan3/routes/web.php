@@ -15,3 +15,4 @@ Route::get('/about', function () {
 // Router untuk memanggil method di PostController
 Route::get('posts', [PostController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
